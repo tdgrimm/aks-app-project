@@ -11,10 +11,10 @@ COPY ["/Shopping/Shopping.Client/Shopping.Client.csproj", "Shopping.Client/"]
 RUN dotnet restore
 COPY . .
 WORKDIR "/src/Shopping.Client"
-RUN dotnet build "src/Shopping.Client.csproj" -c Release -o /app/build
+RUN dotnet build "src/Shopping.Client/Shopping.Client.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "src/Shopping.Client.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "src/Shopping.Client/Shopping.Client.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 
 FROM base AS final
