@@ -7,7 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["/Shopping/Shopping.Client/Shopping.Client.csproj", "Shopping.Client/"]
-RUN dotnet restore "/Shopping/Shopping.Client/Shopping.Client.csproj"
+RUN dotnet restore "Shopping.Client/Shopping.Client.csproj"
 COPY . .
 WORKDIR "/src/Shopping.Client"
 RUN dotnet build "Shopping.Client.csproj" -c Release -o /app/build
