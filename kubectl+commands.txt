@@ -1,0 +1,86 @@
+
+kubectl
+	see organized commands
+
+kubectl --help
+kubectl version
+kubectl cluster-info
+kubectl get nodes 
+kubectl get pod
+kubectl get services
+kubectl get all
+kubectl get all -- pods, services, deployments..
+
+-----------
+
+Imperitive Commands
+
+kubectl run [container_name] --image=[image_name]
+kubectl port-forward [pod] [ports]
+
+kubectl create [resource]
+kubectl apply [resource] -- create or modify resources
+
+Imparitive 
+-----------
+kubectl run swn-nginx --image=nginx
+kubectl get pods
+kubectl get all
+
+kubectl port-forward swn-nginx 8080:80
+kubectl delete deployment swn-nginx
+kubectl get pods --watch
+---------
+
+kubectl create
+	-- there is no pod 
+	so its abraction from deployment so we should create deployment
+
+kubectl create deployment name --image=image [--dry-run] [options]
+kubectl create deployment nginx-depl --image=nginx
+kubectl get deployment
+kubectl get pod
+kubectl get replicaset
+kubectl get all
+---------
+
+Edit Deployment:
+kubectl run swn-nginx --image=nginx
+
+Debugging Pods
+
+kubectl logs nginx-depl-5c8bf76b5b-tzv2k
+
+-- create new depl - mongo
+kubectl create deployment mongo-depl --image=mongo
+kubectl get pod
+kubectl describe pod mongo-depl-5fd6b7d4b4-6xzjd
+kubectl logs mongo-depl-5fd6b7d4b4-6xzjd
+kubectl exec mongo-depl-5fd6b7d4b4-6xzjd -it sh
+	ls
+	mongo
+		show dbs
+
+-- delete reasource
+
+kubectl get deployment
+kubectl get replicaset
+
+kubectl delete deployment nginx-depl
+kubectl delete deployment mongo-depl
+
+kubectl get pod --watch
+kubectl get replicaset
+---------
+
+kubectl get deployment nginx-depl -o yaml
+	displays full yaml with kubernetes generated code.
+
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+Kubernetes Dashboard:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+
+Dashboard Token:
+eyJhbGciOiJSUzI1NiIsImtpZCI6IkZaYnluX1FlODMybWJRaXk3WUhlQnRYN1Q0cENuTnFoc3ExUEZlZ2tTcnMifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjgwNTQ2Mjg2LCJpYXQiOjE2ODA1NDI2ODYsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJhZG1pbi11c2VyIiwidWlkIjoiY2NhMGQwMjUtOTRhYS00ZjQ5LWIzY2YtZDg2MGQwZjEzODY5In19LCJuYmYiOjE2ODA1NDI2ODYsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDphZG1pbi11c2VyIn0.40UEmahrChHpmhZrICfz6tZIl4Im-E6MpIgEI7a3uTyCkAmd76jyVWoBHwLTMC22-L78ArGU5jj1JvlCs3fUWFDOKjKawPMneHGDs3SC94v_FdcA3Ozd2RxrQt_njWb7bw-pWhkedDt724lN_mL189IkRQ4f9gh1q6k5IGQPTCkgLxT0vFS1MOZDdv9c5iusKTww1qGyiNDeg1JawwTarANNfcp-E6KnztIMXRfXzjGnRBwEv0usVdMcL07kha37CM5YiBKEPqwP4DY2H0lQhrCas3d7juLsbLGFxd3Maen72EWAfog8krHbNTo3IuUQql_dY3xVwQ7fpyIAdfaxLg
