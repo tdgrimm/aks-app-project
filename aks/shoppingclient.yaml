@@ -15,7 +15,7 @@ spec:
         app: shoppingclient
     spec:
       containers:
-      - name: shoppingapi
+      - name: shoppingclient
         image:  tgshoppingacr.azurecr.io/shoppingclient:v2
         imagePullPolicy: IfNotPresent
         ports:
