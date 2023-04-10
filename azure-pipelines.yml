@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- none
+- main
 
 resources:
 - repo: self
@@ -54,7 +54,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'tdgrimmaksappproject-1760.default'
+    environment: 'tdgrimmaksappproject.default'
     strategy:
       runOnce:
         deploy:
