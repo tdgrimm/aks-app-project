@@ -20,7 +20,7 @@ variables:
   dockerRegistryServiceConnection: 'b9e3fd1e-1e30-495a-8e5c-95229b28e1b2'
   imageRepository: 'shoppingapi'
   containerRegistry: 'tgshoppingacr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: '**/Shopping/Shopping.API/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'tgshoppingacr2134a9c5-auth'
 
@@ -38,7 +38,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build and push Shopping API to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
@@ -60,7 +60,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'tdgrimmaksappproject-1760.default'
+    environment: 'tdgrimmaksappproject.default'
     strategy:
       runOnce:
         deploy:
@@ -73,7 +73,7 @@ stages:
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
 
           - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
+            displayName: Deploy Shopping API to Kubernetes cluster
             inputs:
               action: deploy
               manifests: |
